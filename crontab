@@ -1,0 +1,1 @@
+0 * * * * cd /app && poe index > /var/log/cron.log 2>&1

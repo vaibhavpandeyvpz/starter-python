@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    command: poetry run uvicorn app.web:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+  cron:
+    build: .
+    command: /usr/sbin/cron -f
+
+  ngrok:
+    command: start --all --config /etc/ngrok.yml
+    env_file:
+      - .env
+    image: ngrok/ngrok
+    ports:
+      - "4040:4040"
+    restart: unless-stopped
+    volumes:
+      - ./ngrok.yml:/etc/ngrok.yml
