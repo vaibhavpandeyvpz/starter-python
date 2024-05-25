@@ -1,7 +1,7 @@
 import asyncio
 
-from app.commands import index as index_command
-from app.container import Container
+from .commands import index as index_command
+from .container import Container
 
 container = Container()
 

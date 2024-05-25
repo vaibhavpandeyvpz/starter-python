@@ -1,6 +1,8 @@
 from dependency_injector.containers import DeclarativeContainer, WiringConfiguration
-from dependency_injector.providers import Configuration
+from dependency_injector.providers import Configuration, Singleton
 from os import path
+from redis import Redis
+from rq import Queue
 
 
 class Container(DeclarativeContainer):
@@ -13,6 +15,18 @@ class Container(DeclarativeContainer):
     wiring_config = WiringConfiguration(
         modules=[
             ".commands.index",
+            ".jobs.index",
             ".routers.index",
         ],
+    )
+
+    redis = Singleton(
+        Redis,
+        host=config.redis.host,
+        port=config.redis.port,
+    )
+
+    queue = Singleton(
+        Queue,
+        connection=redis,
     )

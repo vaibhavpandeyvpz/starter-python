@@ -18,6 +18,8 @@ fastapi = "^0.111.0"
 python = ">=3.10,<3.11"
 setuptools = "^70.0.0"
 loguru = "^0.7.2"
+redis = {extras = ["hiredis"], version = "^5.0.4"}
+rq = "^1.16.2"
 
 [tool.poetry.dependencies.uvicorn]
 extras = ["standard"]
@@ -29,3 +31,4 @@ black = "^24.4.0"
 
 [tool.poe.tasks]
 index.script = "app.cli:index"
+worker.script = "app.worker:main"
