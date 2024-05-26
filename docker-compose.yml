@@ -65,7 +65,7 @@ services:
 
   worker:
     build: .
-    command: sh -c "poe worker"
+    command: sh -c "poetry run poe worker"
     volumes:
       - .:/app
 

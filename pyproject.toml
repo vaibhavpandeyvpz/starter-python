@@ -23,6 +23,7 @@ rq = "^1.16.2"
 pymysql = "^1.1.1"
 sqlalchemy = "^2.0.30"
 cryptography = "^42.0.7"
+alembic = "^1.13.1"
 
 [tool.poetry.dependencies.uvicorn]
 extras = ["standard"]
@@ -33,5 +34,5 @@ toml-sort = "^0.23.1"
 black = "^24.4.0"
 
 [tool.poe.tasks]
-add-user.script = "app.cli:add_user"
+index.script = "app.cli:index"
 worker.script = "app.worker:main"
