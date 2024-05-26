@@ -1,8 +1,9 @@
 from dependency_injector.containers import DeclarativeContainer, WiringConfiguration
-from dependency_injector.providers import Configuration, Singleton
+from dependency_injector.providers import Callable, Configuration, Singleton
 from os import path
 from redis import Redis
 from rq import Queue
+from sqlalchemy import create_engine
 
 
 class Container(DeclarativeContainer):
@@ -14,10 +15,17 @@ class Container(DeclarativeContainer):
 
     wiring_config = WiringConfiguration(
         modules=[
-            ".commands.index",
-            ".jobs.index",
-            ".routers.index",
+            ".commands",
+            ".jobs",
+            ".routers",
         ],
+    )
+
+    engine = Singleton(
+        Callable(
+            create_engine,
+            config.db.url,
+        )
     )
 
     redis = Singleton(

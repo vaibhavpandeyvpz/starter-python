@@ -38,8 +38,8 @@ You can also use below command to run it on demand (or any added command) anytim
 # spawn a shell
 docker compose exec cron bash
 
-# run "index" command
-poe index
+# run "add-user" command
+poe add-user
 ```
 
 You can test the API by calling `/` endpoint as below:

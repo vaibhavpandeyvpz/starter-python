@@ -15,6 +15,18 @@ services:
     volumes:
       - .:/app
 
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: example
+      MYSQL_USER: example
+      MYSQL_PASSWORD: example
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
   ngrok:
     command: start --all --config /etc/ngrok.yml
     env_file:
@@ -25,6 +37,17 @@ services:
     restart: unless-stopped
     volumes:
       - ./ngrok.yml:/etc/ngrok.yml
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: example
+      PMA_PASSWORD: example
+    ports:
+      - "9000:80"
 
   redis:
     image: redis:5-alpine
@@ -47,4 +70,5 @@ services:
       - .:/app
 
 volumes:
+  mysql-data:
   redis-data:
