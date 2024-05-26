@@ -5,10 +5,7 @@ RUN apt-get update && \
 
 RUN pip install poetry==1.8.0
 
-RUN pip install pipx && \
-    pipx ensurepath
-
-RUN pipx install poethepoet
+RUN pip install poethepoet
 
 WORKDIR /app
 

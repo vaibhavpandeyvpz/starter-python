@@ -15,6 +15,6 @@ class IndexResponse(BaseModel):
 @index_router.get("/", status_code=status.HTTP_200_OK, response_model=IndexResponse)
 @inject
 async def index(
-    config: Dict[str, Any] = Depends(Provide[Container.config])
+    config: Dict[str, Any] = Depends(Provide[Container.config]),
 ) -> IndexResponse:
     return IndexResponse(env=config["app"]["env"])
