@@ -15,6 +15,12 @@ services:
     volumes:
       - .:/app
 
+  mailcatcher:
+    image: syncloudsoftech/mailcatcher
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
   mysql:
     image: mysql:8
     environment:
@@ -65,7 +71,7 @@ services:
 
   worker:
     build: .
-    command: sh -c "poetry run poe worker"
+    command: poetry run poe worker
     volumes:
       - .:/app
 
