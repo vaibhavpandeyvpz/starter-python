@@ -1,1 +1,1 @@
-from .index import index
+from .welcome import welcome

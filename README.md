@@ -41,15 +41,15 @@ alembic upgrade head
 
 ## Development
 
-This project includes a cron job scheduled to run `index` command (see `app/cli.py`) every hour.
+This project includes a cron job scheduled to run `poe welcome` command (see `app/cli.py`) every hour.
 You can also use below command to run it on demand (or any added command) anytime.
 
 ```shell
 # spawn a shell
 docker compose exec cron sh -c "poetry shell"
 
-# run "index" command
-poe index
+# run "welcome" command
+poe welcome
 ```
 
 You can test the API by calling `/` endpoint as below:
