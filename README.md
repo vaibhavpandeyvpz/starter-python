@@ -29,6 +29,16 @@ docker compose up -d
 
 Server should be up & running on [127.0.0.1:8000](http://127.0.0.1:8000/).
 
+If you are using bundle [MySQL](https://www.mysql.com) database (powered by [SQLAlchemy](https://www.sqlalchemy.org)), run migrations using below commands:
+
+```shell
+# spawn a shell
+docker compose exec cron sh -c "poetry shell"
+
+# run all migrations
+alembic upgrade head
+```
+
 ## Development
 
 This project includes a cron job scheduled to run `index` command (see `app/cli.py`) every hour.
@@ -36,10 +46,10 @@ You can also use below command to run it on demand (or any added command) anytim
 
 ```shell
 # spawn a shell
-docker compose exec cron bash
+docker compose exec cron sh -c "poetry shell"
 
-# run "add-user" command
-poe add-user
+# run "index" command
+poe index
 ```
 
 You can test the API by calling `/` endpoint as below:
