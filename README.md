@@ -12,13 +12,10 @@ Once logged in, make note of the auth token.
 Run below commands in project folder:
 
 ```shell
-# create .env file
-cp .env.dist .env
-
-# update values in .env file e.g., NGROK_AUTHTOKEN
-
 # create ngrok config
 cp ngrok.dist.yml ngrok.yml
+
+# update values in ngrok.yml file e.g., your_authtoken_here and domain (optional)
 
 # create app config
 cp config.dist.ini config.ini

@@ -1,5 +1,11 @@
 from dependency_injector.containers import DeclarativeContainer, WiringConfiguration
-from dependency_injector.providers import Callable, Configuration, Singleton
+from dependency_injector.providers import (
+    Callable,
+    Configuration,
+    Object,
+    Selector,
+    Singleton,
+)
 from drymail import SMTPMailer
 from os import path
 from redis import Redis
@@ -46,6 +52,16 @@ class Container(DeclarativeContainer):
         port=config.mail.port,
         user=config.mail.username,
         password=config.mail.password,
-        ssl=config.provided["mail"]["encryption"] == "ssl",
-        tls=config.provided["mail"]["encryption"] == "tls",
+        ssl=Selector(
+            config.mail.encryption,
+            ssl=Object(True),
+            tls=Object(False),
+            none=Object(False),
+        ),
+        tls=Selector(
+            config.mail.encryption,
+            ssl=Object(False),
+            tls=Object(True),
+            none=Object(False),
+        ),
     )
