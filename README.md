@@ -26,7 +26,7 @@ docker compose up -d
 
 Server should be up & running on [127.0.0.1:8000](http://127.0.0.1:8000/).
 
-If you are using bundle [MySQL](https://www.mysql.com) database (powered by [SQLAlchemy](https://www.sqlalchemy.org)), run migrations using below commands:
+If you are using [MySQL](https://www.mysql.com) database (powered by [SQLAlchemy](https://www.sqlalchemy.org)), run migrations using below commands:
 
 ```shell
 # spawn a shell
